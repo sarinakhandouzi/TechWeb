@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TechWeb: articles on AI, programming and software engineering.">
+    <title>TechWeb – Technology &amp; Innovation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div id="site-header"></div>
+    <main id="main">
+        <section class="hero container">
+            <div class="hero-text">
+                <p class="eyebrow">Technology &amp; Innovation Magazine</p>
+                <h1>Explore Technology. Understand Innovation. Build the Future.</h1>
+                <p class="lead">Clear, practical articles on artificial intelligence, programming and software
+                    engineering.</p>
+                <a class="btn" href="#latest">Start reading</a>
+            </div>
+            <div id="hero-featured" class="hero-card"></div>
+        </section>
+
+        <section class="container section" aria-labelledby="featured-title">
+            <h2 id="featured-title">Featured articles</h2>
+            <div id="featured-grid" class="grid"></div>
+        </section>
+
+        <section class="container section" id="latest" aria-labelledby="latest-title">
+            <h2 id="latest-title">Latest articles</h2>
+            <div id="filters" class="chips" role="group" aria-label="Filter by category"></div>
+            <p id="result-count" class="muted" aria-live="polite"></p>
+            <div id="article-grid" class="grid"></div>
+        </section>
+
+        <section class="container section" aria-labelledby="cat-title">
+            <h2 id="cat-title">Browse by category</h2>
+            <div id="category-grid" class="cat-grid"></div>
+        </section>
+
+        <section class="container section">
+            <div class="newsletter">
+                <h2>Newsletter</h2>
+                <p>Get new articles in your inbox. <strong>Demo only:</strong> this is a frontend demonstration, nothing
+                    is sent or stored.</p>
+                <form id="newsletter-form" class="inline-form" novalidate>
+                    <label for="nl-email" class="sr">Email address</label>
+                    <input id="nl-email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+                    <button class="btn" type="submit">Subscribe</button>
+                </form>
+                <p id="nl-msg" class="form-msg" role="status"></p>
+            </div>
+        </section>
+    </main>
+    <div id="site-footer"></div>
+</body>
+
+</html>
