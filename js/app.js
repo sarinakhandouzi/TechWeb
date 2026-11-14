@@ -1,25 +1,5 @@
-/* DATA ONLY: add a new article by adding one object to this array.
-   content blocks: { h: "subheading", p: ["paragraph", ...], ul: ["list item", ...] } */
-/* =====================================================================
-   HOW TO ADD AN ARTICLE: copy this template, paste it as the LAST item
-   (after the final article, before the closing "];"), and add a comma
-   after the previous article's closing "}".
 
-  {
-    id: 7,                              // unique number, never reuse
-    title: "Your title", category: "Programming",   // must match CATEGORIES
-    author: "Name", date: "2026-11-01", readTime: 5, hue: 120, featured: false,
-    // image: "assets/images/name.jpg", imageAlt: "...", imageCredit: "...",
-    // source: "Publication, date", sourceUrl: "https://...",
-    description: "Short summary shown on cards.",
-    keywords: ["keyword1", "keyword2"],
-    intro: "Opening paragraph.",
-    content: [ { h: "Subheading", p: ["Paragraph."], ul: ["Optional item"] } ]
-  }
-   ===================================================================== */
-
-const CATEGORIES = ["Artificial Intelligence", "Programming", "Software Engineering", "Web Development", "Technology Trends"];
-
+const CATEGORIES = ["Artificial Intelligence", "Programming", "Software Engineering", "Web Development", "Autonomous Systems"]
 const ARTICLES = [
   {
     id: 1, title: "An Overview of Artificial Intelligence Ethics",
@@ -62,8 +42,31 @@ const ARTICLES = [
       { h: "Takeaway for students", p: ["If you study robotics, do not rely on a project course alone to teach you good software habits. Learn version control, testing and code review on purpose, and ask a program how it teaches them before you choose it.", "Summary based on: M. Zizyte and T. Tabor, Should Robotics Engineering Education Include Software Engineering Education?, 2022 IEEE/ACM 4th International Workshop on Robotics Software Engineering (RoSE), May 2022."] }
     ]
   },
+
   {
-    id: 3, title: "AI in Software Engineering: A Ten-Year Literature Review (2013-2023)",
+    id: 3, title: "Machine Learning Feedback to Improve Programming Skills",
+    category: "Programming",
+    author: "Summary of Kaleem, Hassan & Khurshid (2024)",
+    date: "2024-04-22", readTime: 8, hue: 20, featured: true,
+    image: "assets/images/ml-programming-feedback.jpg",
+    imageAlt: "ML acronym. ML coding language concept.ML . A general-purpose functional programming language with a strong emphasis on type inference and safety.",
+    imageCredit: "Photo by Dave Hoeek",
+    source: "IEEE Access, Vol. 12, pp. 59431-59440, Apr 2024",
+    sourceUrl: "https://doi.org/10.1109/ACCESS.2024.3391873",
+    description: "A summary of a study that used machine learning to group programming students by their computational thinking weaknesses and give each group targeted feedback.",
+    keywords: ["programming", "education", "computational thinking", "machine learning", "clustering", "feedback", "students", "oop", "learning"],
+    intro: "Solving a programming task needs more than knowing syntax. A study from IEEE Access asks how teachers can find out which thinking skills each student is missing, and how machine learning can help give them the right feedback.",
+    content: [
+      { h: "Computational thinking and programming", p: ["Writing a program draws on four basic skills of computational thinking: algorithmic thinking, pattern recognition, decomposition and abstraction. A programmer needs all of them, so teachers should take them into account when they evaluate students."] },
+      { h: "The problem with usual grading", p: ["According to the authors, existing methods for improving programming ability do not consider these skills, and they grade students without them. As a result, a student's weak skills stay hidden, and teachers find it hard to give feedback that fits what that student needs."] },
+      { h: "What the study did", p: ["The study involved 780 students of an object-oriented programming class. They completed programming assignments, then small tasks that each required different computational thinking skills. A machine learning method then clustered the students into groups based on their scores."] },
+      { h: "What the groups showed", p: ["The clustering produced six groups:"], ul: ["One group had no skill deficiencies and consisted of students who were proficient in programming", "Five groups each had their own set of skill deficiencies"] },
+      { h: "Results", p: ["The authors built a skill development plan for each group with deficiencies. They report that this targeted feedback was very effective and improved the computational thinking deficiencies of 82% of the students."] },
+      { h: "Takeaway for learners and teachers", p: ["Knowing exactly which skill is weak makes practice more effective than a single grade does. If you are learning to program, try to work out whether you struggle most with breaking problems down, spotting patterns, abstracting, or designing the steps.", "Summary based on: M. Kaleem, M. A. Hassan and S. K. Khurshid, A Machine Learning-Based Adaptive Feedback System to Enhance Programming Skill Using Computational Thinking, IEEE Access, vol. 12, pp. 59431-59440, 2024."] }
+    ]
+  },
+  {
+    id: 4, title: "AI in Software Engineering: A Ten-Year Literature Review (2013-2023)",
     category: "Software Engineering",
     author: "Summary of Durrani et al. (2024)",
     date: "2024-11-01", readTime: 5, hue: 100, featured: false,
@@ -84,7 +87,7 @@ const ARTICLES = [
     ]
   },
   {
-    id: 4, title: "Understanding Machine Learning", category: "Artificial Intelligence",
+    id: 5, title: "Understanding Machine Learning", category: "Artificial Intelligence",
     author: "Dr. Lena Fischer", date: "2026-09-05", readTime: 8, hue: 280, featured: false,
     /* To use a real image, uncomment and add the file:
     image: "assets/images/machine-learning.jpg",
@@ -103,7 +106,7 @@ const ARTICLES = [
     ]
   },
   {
-    id: 5, title: "Modern Web Development Technologies", category: "Web Development",
+    id: 6, title: "Modern Web Development Technologies", category: "Web Development",
     author: "Marcus Weber", date: "2026-08-28", readTime: 6, hue: 190, featured: false,
     /* To use a real image, uncomment and add the file:
     image: "assets/images/web-development.jpg",
@@ -122,7 +125,26 @@ const ARTICLES = [
     ]
   },
   {
-    id: 6, title: "How Large Language Models Work", category: "Artificial Intelligence",
+    id: 7, title: "How Large Language Models Work", category: "Artificial Intelligence",
+    author: "Sofia Alvarez", date: "2026-08-18", readTime: 9, hue: 340, featured: false,
+    /* To use a real image, uncomment and add the file:
+    image: "assets/images/llm.jpg",
+    imageAlt: "Describe the image here",
+    imageCredit: "Photo by NAME on Unsplash", */
+    /* To credit an original source, uncomment:
+    source: "Publication name, date",
+    sourceUrl: "https://...", */
+    description: "Tokens, embeddings and attention: a plain-English look inside the models behind modern chatbots.",
+    keywords: ["llm", "language model", "transformer", "gpt", "tokens", "attention", "chatbot"],
+    intro: "A large language model (LLM) is a neural network trained to predict the next piece of text. From that simple goal, surprisingly general abilities emerge.",
+    content: [
+      { h: "Tokens and embeddings", p: ["Text is split into tokens, small chunks of words. Each token becomes a vector of numbers (an embedding) that captures aspects of its meaning."] },
+      { h: "The transformer and attention", p: ["The transformer architecture uses attention to let every token weigh the relevance of every other token in the context. This is how a model links a pronoun back to the right noun."] },
+      { h: "Training and limits", p: ["Models are first pre-trained on huge text collections, then fine-tuned to follow instructions. They can state falsehoods fluently, so important claims should always be verified."], ul: ["Pre-training: learn language patterns", "Fine-tuning: learn to be helpful", "Verification: still the human's job"] }
+    ]
+  },
+  {
+    id: 7, title: "How Large Language Models Work", category: "Autonomous Systems",
     author: "Sofia Alvarez", date: "2026-08-18", readTime: 9, hue: 340, featured: false,
     /* To use a real image, uncomment and add the file:
     image: "assets/images/llm.jpg",
