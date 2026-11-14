@@ -48,35 +48,40 @@ const ARTICLES = [
     image: "assets/images/software-engineering.jpg",
     imageAlt: "Programming",
     imageCredit: "Photo by Jake Widmer",
-    /* To credit an original source, uncomment:
-    source: "Publication name, date",
-    sourceUrl: "https://ieeexplore.ieee.org/document/9814834", */
-    description: "How AI assistants, automation and new practices are reshaping the daily work of developers.",
-    keywords: ["software", "engineering", "future", "automation", "careers", "devops"],
-    intro: "Software engineering is more than writing code. It is the discipline of building reliable systems with a team over a long time, and that core is not going away.",
+
+    source: "2022 IEEE/ACM 4th International Workshop on Robotics Software Engineering (RoSE), May 2022",
+    sourceUrl: "https://ieeexplore.ieee.org/document/9814834",
+    description: "A summary of a study asking whether bachelor's degrees in robotics teach the software engineering practices that robotics jobs require.",
+    keywords: ["robotics", "software engineering", "education", "curriculum", "bachelor", "degree", "university", "students", "skills"],
+    intro: "More and more universities in the United States now offer bachelor's degrees in robotics. A workshop paper asks a practical question about them: do these programs actually teach the software engineering skills that robotics work depends on?",
     content: [
-      { h: "Tools are changing", p: ["AI code assistants now draft functions, tests and documentation. The engineer's role shifts toward specifying problems clearly, reviewing output critically and designing the overall system."] },
-      { h: "Skills that stay valuable", p: ["Tools change quickly, fundamentals do not."], ul: ["Data structures, algorithms and complexity", "System design and trade-off analysis", "Testing, debugging and reading code", "Communication and collaboration"] },
-      { h: "Practices to watch", p: ["Continuous integration, infrastructure as code and observability are becoming standard. Engineers who understand the whole delivery pipeline, from commit to production, are increasingly in demand."] }
+      { h: "Why the question matters", p: ["Robots run on software, so a graduate who builds robots also needs to know how to build reliable software. These degrees aim to prepare students for jobs in the robotics industry, which makes the quality of their software training an important thing to check."] },
+      { h: "How the researchers studied it", p: ["The authors first compiled an updated list of robotics bachelor's degree programs. Then, for each program, they checked whether its curriculum claims to teach a specific software engineering practice that robotics software requires."] },
+      { h: "What they found", p: ["The results were uneven:"], ul: ["Some required practices are not mentioned in the curricula at all", "Others are taught only implicitly, inside long-term project courses", "These project courses differ widely in scope, guidance and structure"] },
+      { h: "What it means", p: ["Because the practices are missing or only taught by chance, the authors conclude that robotics bachelor's degrees may not be preparing students to use these practices in the workforce."] },
+      { h: "Takeaway for students", p: ["If you study robotics, do not rely on a project course alone to teach you good software habits. Learn version control, testing and code review on purpose, and ask a program how it teaches them before you choose it.", "Summary based on: M. Zizyte and T. Tabor, Should Robotics Engineering Education Include Software Engineering Education?, 2022 IEEE/ACM 4th International Workshop on Robotics Software Engineering (RoSE), May 2022."] }
     ]
   },
   {
-    id: 3, title: "Python Programming for Beginners", category: "Programming",
-    author: "Sofia Alvarez", date: "2026-09-15", readTime: 7, hue: 40, featured: true,
-    /* To use a real image, uncomment and add the file:
-    image: "assets/images/python.jpg",
+    id: 3, title: "AI in Software Engineering: A Ten-Year Literature Review (2013-2023)",
+    category: "Software Engineering",
+    author: "Summary of Durrani et al. (2024)",
+    date: "2024-11-01", readTime: 5, hue: 100, featured: false,
+    image: "assets/images/ai-in-software-engineering.jpg",
     imageAlt: "Describe the image here",
-    imageCredit: "Photo by NAME on Unsplash", */
-    /* To credit an original source, uncomment:
-    source: "Publication name, date",
-    sourceUrl: "https://...", */
-    description: "Variables, loops, functions and a first small project: everything you need to start with Python.",
-    keywords: ["python", "beginner", "programming", "code", "learn", "functions"],
-    intro: "Python is popular with beginners because its syntax reads almost like English, yet it is powerful enough for data science, web backends and automation.",
+    imageCredit: "Photo by NAME on Unsplash",
+    source: "IEEE Access, Vol. 12, pp. 171185-171204, Nov 2024",
+    sourceUrl: "https://doi.org/10.1109/ACCESS.2024.3488904",
+    description: "A summary of a literature review on how AI techniques are used across the phases of software development, from planning to maintenance.",
+    keywords: ["ai", "software engineering", "literature review", "machine learning", "deep learning", "testing", "defect prediction", "nlp", "maintenance", "explainable ai"],
+    intro: "Artificial intelligence and software engineering are increasingly used together. A systematic literature review covering 2013 to 2023 asks where and how AI techniques actually help across the software development process.",
     content: [
-      { h: "The building blocks", p: ["A variable stores a value, for example age = 21. Python figures out the type automatically. Conditions use if / elif / else, and loops use for and while."], ul: ["Numbers, strings and booleans", "Lists and dictionaries for collections", "Indentation defines code blocks"] },
-      { h: "Functions", p: ["A function packages reusable logic: def greet(name): return 'Hello ' + name. Writing small functions that do one thing makes programs easier to test and understand."] },
-      { h: "Your first project", p: ["Build a number-guessing game. It needs random numbers, a loop, user input and conditions, which practises nearly every basic concept at once."] }
+      { h: "What the review did", p: ["The authors examined how AI techniques are applied across the phases of software engineering and the activities around them. After screening, they selected 110 research papers published between 2013 and 2023.", "The AI techniques they looked at include machine learning, deep learning, natural language processing, optimization algorithms and expert systems."] },
+      { h: "The phases covered", p: ["The review follows the whole life of a software project:"], ul: ["Planning", "Requirements engineering", "Design", "Development", "Testing", "Deployment", "Maintenance"] },
+      { h: "Main findings", p: ["Machine learning and deep learning are used most widely in development and testing. They help improve software quality through defect prediction, code recommendation and vulnerability detection.", "Natural language processing helps automate the classification of requirements and the analysis of sentiment, which makes some engineering work easier. Optimization algorithms support maintenance tasks such as locating features in code and predicting software repair actions, which improves precision and efficiency."] },
+      { h: "Future directions", p: ["The authors call for AI models that people can interpret and for new approaches such as explainable AI and reinforcement learning. Their aim is software development that is both ethical and efficient."] },
+      { h: "Conclusion", p: ["The review concludes that AI is changing software engineering by improving quality, efficiency and innovation. It also notes that work is still needed to reduce the current limitations and make AI support for software engineering more reliable."] },
+      { h: "Takeaway for developers", p: ["AI tools already support many stages of development, not only code writing. Knowing where they help, and where their limits are, is a useful skill for any future software engineer.", "Summary based on: U. K. Durrani, M. Akpinar, M. F. Adak, A. T. Kabakus, M. M. Ozturk and M. Saleh, A Decade of Progress: A Systematic Literature Review on the Integration of AI in Software Engineering Phases and Activities (2013-2023), IEEE Access, vol. 12, pp. 171185-171204, 2024."] }
     ]
   },
   {
