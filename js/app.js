@@ -139,54 +139,54 @@ const ARTICLES = [
 ];
 
 /* main.js: shared logic for all pages (theme, nav, footer, bookmarks, cards, search, forms) */
-(() =>
-  'use strict');
-const $ = (sel, root = document) => root.querySelector(sel);
-const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+(() => {
+  'use strict';
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-/* ---------- localStorage helpers (always wrapped: storage can be blocked) ---------- */
-const store = {
-  get(key, fallback) { try { const v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); } catch { return fallback; } },
-  set(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* ignore */ } }
-};
+  /* ---------- localStorage helpers (always wrapped: storage can be blocked) ---------- */
+  const store = {
+    get(key, fallback) { try { const v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); } catch { return fallback; } },
+    set(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* ignore */ } }
+  };
 
-/* ---------- Theme ---------- */
-const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-let theme = store.get('ts-theme', preferred);
+  /* ---------- Theme ---------- */
+  const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  let theme = store.get('ts-theme', preferred);
 
 
-const applyTheme = () => {
-  document.documentElement.dataset.theme = theme;
-  const btn = $('#theme-toggle');
-  if (btn) { btn.textContent = theme === 'dark' ? '☀️' : '🌙'; btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'); }
-};
-applyTheme();
+  const applyTheme = () => {
+    document.documentElement.dataset.theme = theme;
+    const btn = $('#theme-toggle');
+    if (btn) { btn.textContent = theme === 'dark' ? '☀️' : '🌙'; btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'); }
+  };
+  applyTheme();
 
-/* ---------- Bookmarks ---------- */
-const getBookmarks = () => { const b = store.get('ts-bookmarks', []); return Array.isArray(b) ? b : []; };
-const isBookmarked = (id) => getBookmarks().includes(id);
-const toggleBookmark = (id) => {
-  const list = getBookmarks();
-  const next = list.includes(id) ? list.filter((x) => x !== id) : [...list, id];
-  store.set('ts-bookmarks', next);
-};
-const bookmarkButton = (id) => {
-  const on = isBookmarked(id);
-  return `<button class="bookmark" type="button" data-bookmark="${id}" aria-pressed="${on}">${on ? '★ Saved' : '☆ Save'}</button>`;
-};
+  /* ---------- Bookmarks ---------- */
+  const getBookmarks = () => { const b = store.get('ts-bookmarks', []); return Array.isArray(b) ? b : []; };
+  const isBookmarked = (id) => getBookmarks().includes(id);
+  const toggleBookmark = (id) => {
+    const list = getBookmarks();
+    const next = list.includes(id) ? list.filter((x) => x !== id) : [...list, id];
+    store.set('ts-bookmarks', next);
+  };
+  const bookmarkButton = (id) => {
+    const on = isBookmarked(id);
+    return `<button class="bookmark" type="button" data-bookmark="${id}" aria-pressed="${on}">${on ? '★ Saved' : '☆ Save'}</button>`;
+  };
 
-/* ---------- Article helpers ---------- */
-const thumb = (a) => {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${a.hue},70%,45%)"/><stop offset="1" stop-color="hsl(${(a.hue + 50) % 360},70%,30%)"/></linearGradient></defs><rect width="640" height="360" fill="url(#g)"/><circle cx="520" cy="80" r="120" fill="#fff" opacity=".1"/><circle cx="90" cy="320" r="90" fill="#fff" opacity=".1"/><text x="40" y="320" font-family="sans-serif" font-size="30" font-weight="700" fill="#fff" opacity=".9">${esc(a.category)}</text></svg>`;
-  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
-};
-const fmtDate = (iso) => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-const articleUrl = (a) => `article.html?id=${a.id}`;
-const altText = (a) => `Illustration for the article ${a.title}`;
-const imgSrc = (a) => a.image || thumb(a);
-const imgAlt = (a) => a.imageAlt || altText(a);
+  /* ---------- Article helpers ---------- */
+  const thumb = (a) => {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${a.hue},70%,45%)"/><stop offset="1" stop-color="hsl(${(a.hue + 50) % 360},70%,30%)"/></linearGradient></defs><rect width="640" height="360" fill="url(#g)"/><circle cx="520" cy="80" r="120" fill="#fff" opacity=".1"/><circle cx="90" cy="320" r="90" fill="#fff" opacity=".1"/><text x="40" y="320" font-family="sans-serif" font-size="30" font-weight="700" fill="#fff" opacity=".9">${esc(a.category)}</text></svg>`;
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  };
+  const fmtDate = (iso) => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  const articleUrl = (a) => `article.html?id=${a.id}`;
+  const altText = (a) => `Illustration for the article ${a.title}`;
+  const imgSrc = (a) => a.image || thumb(a);
+  const imgAlt = (a) => a.imageAlt || altText(a);
 
-const cardHTML = (a, { full = true } = {}) => `
+  const cardHTML = (a, { full = true } = {}) => `
     <article class="card">
       <img src="${esc(imgSrc(a))}" alt="${esc(imgAlt(a))}" width="640" height="360" loading="lazy">
       <div class="card-body">
@@ -198,21 +198,21 @@ const cardHTML = (a, { full = true } = {}) => `
       </div>
     </article>`;
 
-window.TS = { $, esc, thumb, fmtDate, cardHTML, bookmarkButton, isBookmarked, altText, imgSrc, imgAlt };
+  window.TS = { $, esc, thumb, fmtDate, cardHTML, bookmarkButton, isBookmarked, altText, imgSrc, imgAlt };
 
-/* ---------- Header & footer (injected so they're written only once) ---------- */
-const page = location.pathname.split('/').pop() || 'index.html';
-const catLink = (c) => `index.html?category=${encodeURIComponent(c)}#latest`;
-const navItems = [
-  ['Home', 'index.html'],
-  ['Artificial Intelligence', catLink('Artificial Intelligence')],
-  ['Programming', catLink('Programming')],
-  ['Software Engineering', catLink('Software Engineering')],
-  ['About', 'about.html']
-];
-const header = $('#site-header');
-if (header) {
-  header.outerHTML = `
+  /* ---------- Header & footer (injected so they're written only once) ---------- */
+  const page = location.pathname.split('/').pop() || 'index.html';
+  const catLink = (c) => `index.html?category=${encodeURIComponent(c)}#latest`;
+  const navItems = [
+    ['Home', 'index.html'],
+    ['Artificial Intelligence', catLink('Artificial Intelligence')],
+    ['Programming', catLink('Programming')],
+    ['Software Engineering', catLink('Software Engineering')],
+    ['About', 'about.html']
+  ];
+  const header = $('#site-header');
+  if (header) {
+    header.outerHTML = `
     <header class="site-header">
       <div class="container nav">
         <a class="logo" href="index.html">Tech<span>Web</span></a>
@@ -230,10 +230,10 @@ if (header) {
         </form>
       </div>
     </header>`;
-}
-const footer = $('#site-footer');
-if (footer) {
-  footer.outerHTML = `
+  }
+  const footer = $('#site-footer');
+  if (footer) {
+    footer.outerHTML = `
     <footer class="site-footer"><div class="container">
       <div class="footer-grid">
         <div><a class="logo" href="index.html">Tech<span>Web</span></a><p class="muted">A technology blog explaining AI, programming and software engineering in plain language.</p></div>
@@ -243,134 +243,135 @@ if (footer) {
       </div>
       <p class="copy">© ${new Date().getFullYear()} TechWeb. Demo project.</p>
     </div></footer>`;
-}
-
-/* ---------- Header interactions ---------- */
-$('#theme-toggle')?.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; store.set('ts-theme', theme); applyTheme(); });
-applyTheme();
-
-const burger = $('#burger'), links = $('#nav-links');
-burger?.addEventListener('click', () => {
-  const open = links.classList.toggle('open');
-  burger.setAttribute('aria-expanded', open);
-  burger.textContent = open ? '✕' : '☰';
-});
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && links?.classList.contains('open')) burger.click(); });
-
-const sToggle = $('#search-toggle'), sBar = $('#search-bar'), sInput = $('#search-input');
-sToggle?.addEventListener('click', () => {
-  sBar.hidden = !sBar.hidden;
-  sToggle.setAttribute('aria-expanded', !sBar.hidden);
-  if (!sBar.hidden) sInput.focus();
-});
-
-/* ---------- Bookmark clicks (event delegation: one listener for all buttons) ---------- */
-document.addEventListener('click', (e) => {
-  const btn = e.target.closest('[data-bookmark]');
-  if (!btn) return;
-  toggleBookmark(Number(btn.dataset.bookmark));
-  document.dispatchEvent(new CustomEvent('bookmarks-changed'));
-  document.querySelectorAll(`[data-bookmark="${btn.dataset.bookmark}"]`).forEach((b) => {
-    const on = isBookmarked(Number(b.dataset.bookmark));
-    b.setAttribute('aria-pressed', on);
-    b.textContent = on ? '★ Saved' : '☆ Save';
-  });
-});
-
-/* ---------- Form helpers ---------- */
-const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
-const setMsg = (el, text, ok) => { el.textContent = text; el.className = 'form-msg ' + (ok ? 'ok' : 'bad'); };
-
-/* ---------- Newsletter ---------- */
-const nlForm = $('#newsletter-form');
-nlForm?.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const input = $('#nl-email'), msg = $('#nl-msg');
-  const ok = emailOk(input.value.trim());
-  input.setAttribute('aria-invalid', !ok);
-  ok ? setMsg(msg, 'Thanks! (Demo only: nothing was sent or saved.)', true) : setMsg(msg, 'Please enter a valid email address.', false);
-  if (ok) nlForm.reset();
-});
-
-/* ---------- Contact form ---------- */
-const cForm = $('#contact-form');
-cForm?.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const rules = {
-    name: (v) => (v.length < 2 ? 'Please enter your name (at least 2 characters).' : ''),
-    email: (v) => (emailOk(v) ? '' : 'Please enter a valid email address.'),
-    subject: (v) => (v.length < 3 ? 'Please enter a subject (at least 3 characters).' : ''),
-    message: (v) => (v.length < 10 ? 'Your message must be at least 10 characters.' : '')
-  };
-  let valid = true;
-  for (const [field, check] of Object.entries(rules)) {
-    const input = cForm.elements[field], err = $(`#${field}-error`);
-    const problem = check(input.value.trim());
-    err.textContent = problem;
-    input.setAttribute('aria-invalid', Boolean(problem));
-    input.setAttribute('aria-describedby', `${field}-error`);
-    if (problem) valid = false;
   }
-  const msg = $('#contact-msg');
-  if (valid) { setMsg(msg, 'Form is valid! (Demo only: no message was actually sent.)', true); cForm.reset(); }
-  else setMsg(msg, 'Please fix the errors above.', false);
-});
 
-/* ---------- Homepage ---------- */
-if (!$('#article-grid')) return;
-const params = new URLSearchParams(location.search);
-const state = {
-  q: (params.get('q') || '').trim(),
-  category: CATEGORIES.includes(params.get('category')) ? params.get('category') : 'All',
-  saved: false
-};
+  /* ---------- Header interactions ---------- */
+  $('#theme-toggle')?.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; store.set('ts-theme', theme); applyTheme(); });
+  applyTheme();
 
-const hero = ARTICLES[0];
-$('#hero-featured').innerHTML = cardHTML(hero, { full: false });
-$('#featured-grid').innerHTML = ARTICLES.filter((a) => a.featured).slice(0, 3).map((a) => cardHTML(a, { full: false })).join('');
-$('#category-grid').innerHTML = CATEGORIES.map((c) => {
-  const n = ARTICLES.filter((a) => a.category === c).length;
-  return `<a class="cat" href="${catLink(c)}">${esc(c)}<br><span class="muted">${n} article${n === 1 ? '' : 's'}</span></a>`;
-}).join('');
-
-const filtersEl = $('#filters');
-const chipLabels = ['All', ...CATEGORIES, '★ Saved'];
-filtersEl.innerHTML = chipLabels.map((l) => `<button class="chip" type="button" data-chip="${esc(l)}" aria-pressed="false">${esc(l)}</button>`).join('');
-
-const matches = (a) => {
-  if (state.category !== 'All' && a.category !== state.category) return false;
-  if (state.saved && !isBookmarked(a.id)) return false;
-  const haystack = [a.title, a.description, a.category, ...a.keywords].join(' ').toLowerCase();
-  return state.q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => haystack.includes(w));
-};
-
-const render = () => {
-  const list = ARTICLES.filter(matches);
-  $('#article-grid').innerHTML = list.map((a) => cardHTML(a)).join('');
-  $('#result-count').textContent = list.length ? `${list.length} article${list.length === 1 ? '' : 's'} found` : 'No articles match. Try another search or category.';
-  filtersEl.querySelectorAll('.chip').forEach((c) => {
-    const label = c.dataset.chip;
-    const active = state.saved ? label === '★ Saved' : label === state.category;
-    c.setAttribute('aria-pressed', active);
+  const burger = $('#burger'), links = $('#nav-links');
+  burger?.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+    burger.textContent = open ? '✕' : '☰';
   });
-};
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && links?.classList.contains('open')) burger.click(); });
 
-filtersEl.addEventListener('click', (e) => {
-  const chip = e.target.closest('.chip');
-  if (!chip) return;
-  const label = chip.dataset.chip;
-  state.saved = label === '★ Saved';
-  state.category = state.saved ? 'All' : label;
+  const sToggle = $('#search-toggle'), sBar = $('#search-bar'), sInput = $('#search-input');
+  sToggle?.addEventListener('click', () => {
+    sBar.hidden = !sBar.hidden;
+    sToggle.setAttribute('aria-expanded', !sBar.hidden);
+    if (!sBar.hidden) sInput.focus();
+  });
+
+  /* ---------- Bookmark clicks (event delegation: one listener for all buttons) ---------- */
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-bookmark]');
+    if (!btn) return;
+    toggleBookmark(Number(btn.dataset.bookmark));
+    document.dispatchEvent(new CustomEvent('bookmarks-changed'));
+    document.querySelectorAll(`[data-bookmark="${btn.dataset.bookmark}"]`).forEach((b) => {
+      const on = isBookmarked(Number(b.dataset.bookmark));
+      b.setAttribute('aria-pressed', on);
+      b.textContent = on ? '★ Saved' : '☆ Save';
+    });
+  });
+
+  /* ---------- Form helpers ---------- */
+  const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+  const setMsg = (el, text, ok) => { el.textContent = text; el.className = 'form-msg ' + (ok ? 'ok' : 'bad'); };
+
+  /* ---------- Newsletter ---------- */
+  const nlForm = $('#newsletter-form');
+  nlForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = $('#nl-email'), msg = $('#nl-msg');
+    const ok = emailOk(input.value.trim());
+    input.setAttribute('aria-invalid', !ok);
+    ok ? setMsg(msg, 'Thanks! (Demo only: nothing was sent or saved.)', true) : setMsg(msg, 'Please enter a valid email address.', false);
+    if (ok) nlForm.reset();
+  });
+
+  /* ---------- Contact form ---------- */
+  const cForm = $('#contact-form');
+  cForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const rules = {
+      name: (v) => (v.length < 2 ? 'Please enter your name (at least 2 characters).' : ''),
+      email: (v) => (emailOk(v) ? '' : 'Please enter a valid email address.'),
+      subject: (v) => (v.length < 3 ? 'Please enter a subject (at least 3 characters).' : ''),
+      message: (v) => (v.length < 10 ? 'Your message must be at least 10 characters.' : '')
+    };
+    let valid = true;
+    for (const [field, check] of Object.entries(rules)) {
+      const input = cForm.elements[field], err = $(`#${field}-error`);
+      const problem = check(input.value.trim());
+      err.textContent = problem;
+      input.setAttribute('aria-invalid', Boolean(problem));
+      input.setAttribute('aria-describedby', `${field}-error`);
+      if (problem) valid = false;
+    }
+    const msg = $('#contact-msg');
+    if (valid) { setMsg(msg, 'Form is valid! (Demo only: no message was actually sent.)', true); cForm.reset(); }
+    else setMsg(msg, 'Please fix the errors above.', false);
+  });
+
+  /* ---------- Homepage ---------- */
+  if (!$('#article-grid')) return;
+  const params = new URLSearchParams(location.search);
+  const state = {
+    q: (params.get('q') || '').trim(),
+    category: CATEGORIES.includes(params.get('category')) ? params.get('category') : 'All',
+    saved: false
+  };
+
+  const hero = ARTICLES[0];
+  $('#hero-featured').innerHTML = cardHTML(hero, { full: false });
+  $('#featured-grid').innerHTML = ARTICLES.filter((a) => a.featured).slice(0, 3).map((a) => cardHTML(a, { full: false })).join('');
+  $('#category-grid').innerHTML = CATEGORIES.map((c) => {
+    const n = ARTICLES.filter((a) => a.category === c).length;
+    return `<a class="cat" href="${catLink(c)}">${esc(c)}<br><span class="muted">${n} article${n === 1 ? '' : 's'}</span></a>`;
+  }).join('');
+
+  const filtersEl = $('#filters');
+  const chipLabels = ['All', ...CATEGORIES, '★ Saved'];
+  filtersEl.innerHTML = chipLabels.map((l) => `<button class="chip" type="button" data-chip="${esc(l)}" aria-pressed="false">${esc(l)}</button>`).join('');
+
+  const matches = (a) => {
+    if (state.category !== 'All' && a.category !== state.category) return false;
+    if (state.saved && !isBookmarked(a.id)) return false;
+    const haystack = [a.title, a.description, a.category, ...a.keywords].join(' ').toLowerCase();
+    return state.q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => haystack.includes(w));
+  };
+
+  const render = () => {
+    const list = ARTICLES.filter(matches);
+    $('#article-grid').innerHTML = list.map((a) => cardHTML(a)).join('');
+    $('#result-count').textContent = list.length ? `${list.length} article${list.length === 1 ? '' : 's'} found` : 'No articles match. Try another search or category.';
+    filtersEl.querySelectorAll('.chip').forEach((c) => {
+      const label = c.dataset.chip;
+      const active = state.saved ? label === '★ Saved' : label === state.category;
+      c.setAttribute('aria-pressed', active);
+    });
+  };
+
+  filtersEl.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    const label = chip.dataset.chip;
+    state.saved = label === '★ Saved';
+    state.category = state.saved ? 'All' : label;
+    render();
+  });
+  document.addEventListener('bookmarks-changed', () => { if (state.saved) render(); });
+
+  const onSearch = (value) => { state.q = value.trim(); render(); };
+  sInput?.addEventListener('input', () => onSearch(sInput.value));
+  $('#search-form')?.addEventListener('submit', (e) => { e.preventDefault(); onSearch(sInput.value); location.hash = 'latest'; });
+  if (state.q && sInput) { sInput.value = state.q; sBar.hidden = false; sToggle.setAttribute('aria-expanded', 'true'); }
+
   render();
-});
-document.addEventListener('bookmarks-changed', () => { if (state.saved) render(); });
-
-const onSearch = (value) => { state.q = value.trim(); render(); };
-sInput?.addEventListener('input', () => onSearch(sInput.value));
-$('#search-form')?.addEventListener('submit', (e) => { e.preventDefault(); onSearch(sInput.value); location.hash = 'latest'; });
-if (state.q && sInput) { sInput.value = state.q; sBar.hidden = false; sToggle.setAttribute('aria-expanded', 'true'); }
-
-render();
+})();
 
 /* article.js: renders article.html from ?id=N and drives the reading progress bar */
 (() => {
