@@ -28,7 +28,6 @@ const ARTICLES = [
     image: "assets/images/software-engineering.jpg",
     imageAlt: "Programming",
     imageCredit: "Photo by Jake Widmer",
-
     source: "2022 IEEE/ACM 4th International Workshop on Robotics Software Engineering (RoSE), May 2022",
     sourceUrl: "https://ieeexplore.ieee.org/document/9814834",
     description: "A summary of a study asking whether bachelor's degrees in robotics teach the software engineering practices that robotics jobs require.",
@@ -69,7 +68,7 @@ const ARTICLES = [
     id: 4, title: "AI in Software Engineering: A Ten-Year Literature Review (2013-2023)",
     category: "Software Engineering",
     author: "Summary of Durrani et al. (2024)",
-    date: "2024-11-01", readTime: 5, hue: 100, featured: false,
+    date: "2024-11-01", readTime: 6, hue: 100, featured: false,
     image: "assets/images/ai-in-software-engineering.jpg",
     imageAlt: "The illustration of the proposed conceptual framework",
     source: "IEEE Access, Vol. 12, pp. 171185-171204, Nov 2024",
@@ -87,22 +86,24 @@ const ARTICLES = [
     ]
   },
   {
-    id: 5, title: "Understanding Machine Learning", category: "Artificial Intelligence",
-    author: "Dr. Lena Fischer", date: "2026-09-05", readTime: 8, hue: 280, featured: false,
-    /* To use a real image, uncomment and add the file:
-    image: "assets/images/machine-learning.jpg",
-    imageAlt: "Describe the image here",
-    imageCredit: "Photo by NAME on Unsplash", */
-    /* To credit an original source, uncomment:
-    source: "Publication name, date",
-    sourceUrl: "https://...", */
-    description: "Supervised, unsupervised and reinforcement learning explained, with the training loop demystified.",
-    keywords: ["machine learning", "ml", "training", "supervised", "model", "data"],
-    intro: "Machine learning replaces hand-written rules with models that learn patterns from examples.",
+    id: 5, title: "Securing LLM Workloads With NIST AI RMF in the Internet of Robotic Things",
+    category: "Artificial Intelligence",
+    author: "Summary of Karim, Gupta & Sitharaman (2025)",
+    date: "2025-04-15", readTime: 9, hue: 260, featured: false,
+    image: "assets/images/llm-security-iort.png",
+    source: "IEEE Access, Vol. 13, pp. 69631-69649, Apr 2025",
+    sourceUrl: "https://doi.org/10.1109/ACCESS.2025.3561235",
+    description: "A summary of a paper on managing the security risks of AI and large language models in networks of connected robots, using the NIST AI Risk Management Framework.",
+    keywords: ["iort", "internet of robotic things", "robots", "llm", "security", "nist", "ai rmf", "risk management", "swarm", "trustworthy ai"],
+    intro: "Robots that work together over the internet can help in farming, disaster response and shipping. When AI and large language models control them, new security risks appear. A 2025 paper asks how those risks can be managed in a structured way.",
     content: [
-      { h: "Three learning styles", p: ["Supervised learning uses labelled examples, such as emails marked spam or not spam. Unsupervised learning finds structure in unlabelled data, such as customer groups. Reinforcement learning learns by trial and reward."] },
-      { h: "The training loop", p: ["A model makes predictions, a loss function measures the error, and an optimiser such as gradient descent adjusts the parameters to reduce it. Repeating this many times is 'training'."] },
-      { h: "Overfitting", p: ["A model that memorises training data performs badly on new data. We detect this by keeping a separate test set and prevent it with more data, simpler models or regularisation."] }
+      { h: "The Internet of Robotic Things", p: ["The Internet of Robotic Things (IoRT) connects autonomous, AI-driven robots so they can do complex tasks together. The paper names precision agriculture, disaster response and logistics shipping as examples."] },
+      { h: "The security challenge", p: ["Adding AI to these systems creates serious problems, especially in dynamic, high-stakes environments:"], ul: ["Security vulnerabilities", "Adversarial attacks", "Risks to data integrity", "Operational disruptions"] },
+      { h: "The approach", p: ["The authors integrate and extend the NIST AI Risk Management Framework (AI RMF) for IoRT systems. It gives a structured way to identify, assess and reduce risks that are specific to these systems.", "They also introduce a method based on a large language model that translates natural language commands into secure and precise robotic operations. The goal is smoother collaboration and better safety and reliability in mission-critical situations."] },
+      { h: "A flood recovery example", p: ["To show how this works in practice, the paper uses a flood recovery scenario in precision agriculture. Swarm robots with AI inference engines work together to navigate hazards, locate people, assess damage to infrastructure and reduce risks."] },
+      { h: "Threat analysis and proposed improvements", p: ["The paper presents a detailed threat analysis that maps the vulnerabilities it finds to the NIST AI RMF and proposes security controls for them. It also suggests improvements to the framework itself:"], ul: ["Advanced quantitative methods for assessing risk", "Governance strategies for the subsystems of connected IoRT networks", "Strong auditing mechanisms"] },
+      { h: "Why it matters", p: ["The authors present this work as a foundation for matching AI governance frameworks to the complex, changing needs of IoRT systems. By covering security, operational and ethical concerns, they aim to support safe, efficient and trustworthy use of these systems in many applications."] },
+      { h: "Takeaway for developers", p: ["If an AI model can give commands to physical machines, security is a safety issue and not only a software issue. Using a recognised risk framework from the start makes it easier to find and document threats.", "Summary based on: H. Karim, D. Gupta and S. Sitharaman, Securing LLM Workloads With NIST AI RMF in the Internet of Robotic Things, IEEE Access, vol. 13, pp. 69631-69649, 2025."] }
     ]
   },
   {
