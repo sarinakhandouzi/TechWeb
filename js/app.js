@@ -152,6 +152,7 @@ const store = {
 
 /* ---------- Theme ---------- */
 const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+let theme = store.get('ts-theme', preferred);
 
 
 const applyTheme = () => {
