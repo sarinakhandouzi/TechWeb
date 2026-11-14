@@ -107,22 +107,25 @@ const ARTICLES = [
     ]
   },
   {
-    id: 6, title: "Modern Web Development Technologies", category: "Web Development",
-    author: "Marcus Weber", date: "2026-08-28", readTime: 6, hue: 190, featured: false,
-    /* To use a real image, uncomment and add the file:
-    image: "assets/images/web-development.jpg",
+    id: 6, title: "Rapid Development of Compositional AI",
+    category: "Artificial Intelligence",
+    author: "Summary of Martie et al. (2023)",
+    date: "2023-05-14", readTime: 3, hue: 300, featured: false,
+    image: "assets/images/compositional-ai.jpg",
     imageAlt: "Describe the image here",
-    imageCredit: "Photo by NAME on Unsplash", */
-    /* To credit an original source, uncomment:
-    source: "Publication name, date",
-    sourceUrl: "https://...", */
-    description: "From semantic HTML to CSS Grid and modules: the platform features every web developer should know.",
-    keywords: ["web", "html", "css", "javascript", "frontend", "responsive", "grid"],
-    intro: "The web platform has matured enormously. Many things that once required libraries are now built into browsers.",
+    imageCredit: "Photo by NAME on Unsplash",
+    source: "2023 IEEE/ACM 45th International Conference on Software Engineering: New Ideas and Emerging Results (ICSE-NIER), May 2023",
+    sourceUrl: "https://doi.org/10.1109/ICSE-NIER58687.2023.00020",
+    description: "A summary of a short paper about a framework that helps developers build applications made of several AI components more quickly.",
+    keywords: ["compositional ai", "ai components", "framework", "software engineering", "rapid development", "ai applications", "bee", "reuse"],
+    intro: "Many real AI applications are not one model. They combine several AI components with ordinary software parts to solve a larger problem. A 2023 conference paper looks at how to build such systems faster and in a more organised way.",
     content: [
-      { h: "The core trio", p: ["HTML gives structure, CSS gives presentation and JavaScript gives behaviour. Semantic elements like header, nav, main and article improve accessibility and search visibility."] },
-      { h: "Modern CSS", p: ["Flexbox handles one-dimensional layouts and Grid handles two-dimensional ones. Custom properties (variables) make theming, such as dark mode, simple."] },
-      { h: "Modern JavaScript", p: ["ES6+ brought let/const, arrow functions, modules, promises and async/await. The Fetch API and localStorage cover most small-app needs without any framework."] }
+      { h: "What is compositional AI?", p: ["A compositional AI system combines multiple artificial intelligence components with other application components so that together they solve a bigger problem than any single component could."] },
+      { h: "The problem", p: ["According to the authors, there is no known pattern for developing these systems. Teams usually build them in a bespoke, ad hoc way. This makes development slower and makes it harder to reuse the work in future applications."] },
+      { h: "The proposed solution", p: ["To support the full rapid development cycle of compositional AI applications, the authors developed a new framework called (Bee)*. It is written like a regular expression and pronounced beestar."] },
+      { h: "What the framework aims to give developers", p: ["The paper illustrates how (Bee)* supports building compositional AI applications that are:"], ul: ["Integrated", "Scalable", "Interactive"], },
+      { h: "A simpler developer experience", p: ["The authors also stress that the framework simplifies the developer experience, so building these applications becomes less ad hoc and more repeatable."] },
+      { h: "Takeaway for developers", p: ["Real AI products are usually systems of several parts, so software engineering practices such as reuse and clear structure matter as much as the models themselves.", "Summary based on: L. Martie, J. Rosenberg, V. Demers, G. Zhang, O. Bhardwaj and J. Henning, Rapid Development of Compositional AI, 2023 IEEE/ACM 45th International Conference on Software Engineering: New Ideas and Emerging Results (ICSE-NIER), 2023."] }
     ]
   },
   {
@@ -145,7 +148,7 @@ const ARTICLES = [
     ]
   },
   {
-    id: 7, title: "How Large Language Models Work", category: "Autonomous Systems",
+    id: 8, title: "How Large Language Models Work", category: "Autonomous Systems",
     author: "Sofia Alvarez", date: "2026-08-18", readTime: 9, hue: 340, featured: false,
     /* To use a real image, uncomment and add the file:
     image: "assets/images/llm.jpg",
