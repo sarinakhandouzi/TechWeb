@@ -1,29 +1,31 @@
+
+
 # TechWeb – Technology Editorial Website
 
 A responsive technology-focused website developed using HTML, CSS, and JavaScript. TechWeb presents technology-related content through a structured and user-friendly interface, with a focus on artificial intelligence, software development, and emerging technologies.
 
-## 🌐 Live Demo
+##  Live Demo
 
 [Visit TechWeb](https://sarinakhandouzi.github.io/TechWeb/)
 
-## 📌 Project Overview
+##  Project Overview
 
 TechWeb is a front-end web development project designed to provide an organized platform for exploring technology-related articles and topics. The project focuses on combining functional web development with a clean and accessible user interface.
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - **HTML5:** Website structure and content organization.
 - **CSS3:** Styling, layout, and responsive design.
 - **JavaScript:** Interactive elements and dynamic functionality.
 
-## ✨ Key Features
+##  Key Features
 
 - Responsive website layout.
 - Organized content and navigation.
 - Interactive user interface.
 - Technology-focused articles and sections.
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 TechWeb/
@@ -49,7 +51,7 @@ TechWeb/
 ```
 
 
-## 🚀 Getting Started
+##  Getting Started
 
 To run the project locally:
 
@@ -62,7 +64,7 @@ To run the project locally:
 2. Open the project folder.
 3. Open `index.html` in your browser.
 
-## 👩‍💻 Author
+##  Author
 
 **Sarina Khandouzi**
 
